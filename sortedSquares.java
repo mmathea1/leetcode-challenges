@@ -14,25 +14,26 @@ public class sortedSquares {
     }
 
     public static List<Integer> sortSquares(List<Integer> values) {
-        List<Integer> result = new ArrayList<>();
         for (int i = 0; i < values.size(); i++) {
-            if (i < values.size() - 1) {
+            for (int j = 0; j < values.size(); j++) {
                 int currentValue = values.get(i);
-                int nextValue = values.get(i + 1);
+                int nextValue = values.get(j);
                 if (currentValue < nextValue) {
-                    result.add(currentValue);
+                    int temp = currentValue;
+                    values.set(i, nextValue);
+                    values.set(j, temp);
                 }
             }
         }
-        return result;
+        return values;
     }
 
     public static void main(String[] args) {
-        List<Integer> arr = Arrays.asList(-4, -1, 0, 3, 10);
-        List<Integer> values = squareValues(arr);
-        System.out.println(values);
-        List<Integer> squares = sortSquares(values);
-        System.out.println(squares);
+        List<Integer> arr = Arrays.asList(-7, -3, 2, 3, 11);
+        List<Integer> squares = squareValues(arr);
+        System.out.println("squared: " + squares);
+        List<Integer> sortedSquares = sortSquares(squares);
+        System.out.println("sorted: " + sortedSquares);
 
     }
 }
